@@ -1,234 +1,254 @@
-<!DOCTYPE html>
-<html lang="="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Goal Tracker</title>
-    <style>
-        :root {
-            --bg-color: #f4f6f8;
-            --card-bg: #ffffff;
-            --primary: #3b82f6;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
-            --danger: #ef4444;
-            --sucess-bg: #f0fdf4;
-            --sucess-text: #166534;
-        }
-        body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            background-color: var(var(--bg-color);
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
-            margin: 0;
-            padding-top: 50px;
-            color: var(--text-main);
-        }
+<!doctype html>
+<html lang="" ="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Daily Goal Tracker</title>
+        <style>
+            :root {
+                --bg-color: #f4f6f8;
+                --card-bg: #ffffff;
+                --primary: #3b82f6;
+                --text-main: #1e293b;
+                --text-muted: #64748b;
+                --border: #e2e8f0;
+                --danger: #ef4444;
+                --sucess-bg: #f0fdf4;
+                --sucess-text: #166534;
+            }
+            body {
+                font-family:
+                    system-ui,
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    Roboto,
+                    Oxygen,
+                    Ubuntu,
+                    Cantarell,
+                    "Open Sans",
+                    "Helvetica Neue",
+                    sans-serif;
+                background-color: var(--bg-color);
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                min-height: 100vh;
+                margin: 0;
+                padding-top: 50px;
+                color: var(--text-main);
+            }
 
-        .container {
-            background: var(--card-bg);
-            width: 100%
-            max-width: 450px;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
+            .container {
+                background: var(--card-bg);
+                width: 100%;
+                max-width: 450px;
+                padding: 2rem;
+                border-radius: 12px;
+                box-shadow:
+                    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            }
 
-        h1 {
-            margin-top: 0;
-            font-size: 1.5rem;
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
+            h1 {
+                margin-top: 0;
+                font-size: 1.5rem;
+                text-align: center;
+                margin-bottom: 1.5rem;
+            }
 
-        .input-group {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 2rem;
-        }
+            .input-group {
+                display: flex;
+                gap: 10px;
+                margin-bottom: 2rem;
+            }
 
-        .input[type="text"] {
-            flex-grow: 1;
-            padding: 10px 15px;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            font-size: 1rem;
-            outline: none;
-            transition: border-color 0.2s;
-        }
+            input[type="text"] {
+                flex-grow: 1;
+                padding: 10px 15px;
+                border: 1px solid var(--border);
+                border-radius: 6px;
+                font-size: 1rem;
+                outline: none;
+                transition: border-color 0.2s;
+            }
 
-        input[type="text"]:focus {
-            border-color: var(--primary)
-        }
+            input[type="text"]:focus {
+                border-color: var(--primary);
+            }
 
-        button#add-btn {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: opacity 0.2s;
-        }
+            button#add-btn {
+                background-color: var(--primary);
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 6px;
+                cursor: pointer;
+                font-weight: 600;
+                transition: opacity 0.2s;
+            }
 
-        background#add-btn:hover {
-            opacity: 0.9;
-        }
+            button#add-btn:hover {
+                opacity: 0.9;
+            }
 
-        ul {
-          list-style-type: none;
-          padding: 0;
-          margin: 0;
-        }
+            ul {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+            }
 
-        li {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px;
-            border-bottom: 1px solid var(--border);
-            transition: background 0.2s;
-        }
+            li {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 12px;
+                border-bottom: 1px solid var(--border);
+                transition: background 0.2s;
+            }
 
-        li:last-child {
-            border-bottom: none;
-        }
+            li:last-child {
+                border-bottom: none;
+            }
 
-        li:hover {
-            background-color: #f8fafc;
-        }
+            li:hover {
+                background-color: #f8fafc;
+            }
 
-        .goal-content {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-grow: 1;
-            cursor: pointer;
-        }
+            .goal-content {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                flex-grow: 1;
+                cursor: pointer;
+            }
 
-        .goal-text {
-            font-size: 1rem;
-            transition: color 0.2s, text-decoration 0.2s;
-        }
+            .goal-text {
+                font-size: 1rem;
+                transition:
+                    color 0.2s,
+                    text-decoration 0.2s;
+            }
 
-        .custom-checkbox {
-            width: 20px;
-            height: 20px;
-            border: 2px solid var(--border);
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-        }
+            .custom-checkbox {
+                width: 20px;
+                height: 20px;
+                border: 2px solid var(--border);
+                border-radius: 4px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.2s;
+            }
 
-        li.completed .custom-checkbox {
-            background-color: var(--primary);
-            border-color: var(--primary);
-        }
+            li.completed .custom-checkbox {
+                background-color: var(--primary);
+                border-color: var(--primary);
+            }
 
-        li.completed .custom-checkbox::after {
-            content: '✓';
-            color: white;
-            font-size: 14px;
-            font-weight: bold;
-        }
+            li.completed .custom-checkbox::after {
+                content: "✓";
+                color: white;
+                font-size: 14px;
+                font-weight: bold;
+            }
 
-        li.completed .goal-text {
-            text-decoration: line-through;
-            color: var(--text-muted);
-        }
+            li.completed .goal-text {
+                text-decoration: line-through;
+                color: var(--text-muted);
+            }
 
-        li.completed {
-            background-color: var(--sucess-bg);
-        }
+            li.completed {
+                background-color: var(--sucess-bg);
+            }
 
-        .delete-btn {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            cursor: pointer;
-            font-size: 1.2rem;
-            padding: 5px;
-            border-radius: 4px;
-            transition: color 0.2s, background 0.2s;
-        }
+            .delete-btn {
+                background: none;
+                border: none;
+                color: var(--text-muted);
+                cursor: pointer;
+                font-size: 1.2rem;
+                padding: 5px;
+                border-radius: 4px;
+                transition:
+                    color 0.2s,
+                    background 0.2s;
+            }
 
-        .delete-btn:hover {
-            color: var(--danger);
-            background-color: #fee2e2
-        }
-    </style>
-</head>
-<body>
+            .delete-btn:hover {
+                color: var(--danger);
+                background-color: #fee2e2;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Today's Goals</h1>
 
-<div class="container">
-    <h1>Today's Goal's</h1>
+            <div class="input-group">
+                <input
+                    type="text"
+                    id="goal-input"
+                    placeholder="Enter a new goal!"
+                />
+                <button id="add-btn">Add</button>
+            </div>
 
-    <div class="input-group">
-        <input type="text" id="goal-input" placeholder="Enter a new goal!">
-        <button id="add-btn">Add</button>
-    </div>
+            <ul id="goal-list"></ul>
+        </div>
 
-    <ul id="goal-list">
-        </ul>
-</div>
+        <script>
+            const input = document.getElementById("goal-input");
+            const addBtn = document.getElementById("add-btn");
+            const list = document.getElementById("goal-list");
 
-<script>
-  const input = document.getElementById('goal-inout');
-  const addBtn = document.getElementById('add-btn');
-  const list = document.getElementById('goal-list');
+            function escapeHtml(text) {
+                return text
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    .replace(/"/g, "&quot;")
+                    .replace(/'/g, "&#039;");
+            }
 
-  function addGoal() {
-    const text = input.value.trim();
+            function addGoal() {
+                const text = input.value.trim();
 
-    if (text === "") return;
+                if (text === "") return;
 
-    const li = document.createElement('li');
+                const li = document.createElement("li");
 
-    li.innerHTML = '
+                li.innerHTML = `
       <div class="goal-content">
         <div class="custom-checkbox"></div>
-        <span class="habit-text">${escapeHtml(text)}</span>
+        <span class="goal-text">${escapeHtml(text)}</span>
       </div>
       <button class="delete-btn" title="Remove">&times;</button>
-      ';
+      `;
 
-      const contentDiv = li.querySelector('goal-content');
-      contentDiv.addEventListener('click', () => {
-        li.classList.toggle('completed');
-      });
+                const contentDiv = li.querySelector(".goal-content");
+                contentDiv.addEventListener("click", () => {
+                    li.classList.toggle("completed");
+                });
 
-      const deleteBtn = li.querySelector('.delete-btn');
-      deleteBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        li.remove();
-      });
+                const deleteBtn = li.querySelector(".delete-btn");
+                deleteBtn.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    li.remove();
+                });
 
-      list.appendChild(li);
-      input.value = '';
-      input.focus();
+                list.appendChild(li);
+                input.value = "";
+                input.focus();
+            }
 
-      function escapeHtml(text) {
-        return text
-          .replace(/&/g, "&amp;")
-          .replace(/</g, "&lt;")
-          .replace(/>/g, "&gt;")
-          .replace(/"/g, "&quot;")
-          .replace(/'/g, "&#039;");
-      }
+            addBtn.addEventListener("click", addGoal);
 
-      addBtn.addEventListener('click', addGoal);
-
-      input.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-          addGoal();
-        }
-      });
-</script>
-</body>
+            input.addEventListener("keypress", (e) => {
+                if (e.key === "Enter") {
+                    addGoal();
+                }
+            });
+        </script>
+    </body>
 </html>
